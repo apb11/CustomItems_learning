@@ -2,6 +2,8 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
+using Exiled.API.Features.Items;
+using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
@@ -60,9 +62,13 @@ namespace LanonymousCustomItems.CustomItems
         {
             if (_playersWithArmorOn.Contains(ev.Player))
             {
-                ev.Player.Explode();
+                ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+                grenade.FuseTime = 0.2f;
+                grenade.SpawnActive(ev.Player.Position, Server.Host);
+                
                 _playersWithArmorOn.Remove(ev.Player);
-
+                ev.Player.CurrentArmor.Destroy();
+                
                 if (LanonymousCustomItems.Instance.Config.EnableInfoLogs)
                 {
                     Log.Info($"{ev.Player.Nickname} has exploded!");
