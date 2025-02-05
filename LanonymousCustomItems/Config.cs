@@ -13,5 +13,8 @@ namespace LanonymousCustomItems
         
         [Description("Should the plugin log basic information?")]
         public bool EnableInfoLogs { get; set; } = true;
+        
+        [Description("Should the plugin log basic information?")]
+        public string CyanidePillDeathMessage { get; set; } = "Cyanide pill has killed you!";
     }
 }

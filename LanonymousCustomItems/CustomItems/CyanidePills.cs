@@ -10,10 +10,10 @@ using MEC;
 
 namespace LanonymousCustomItems.CustomItems
 {
-    public class CyanidePills
+    public class CyanidePill
     {
         [CustomItem(ItemType.Painkillers)]
-        public class CyanidePill : CustomItem
+        public class CyanidePillItem : CustomItem
         {
             public override uint Id { get; set; } = 100;
             public override string Name { get; set; } = "Cyanide Pills";
@@ -32,7 +32,7 @@ namespace LanonymousCustomItems.CustomItems
                     },
                 },
             };
-
+                
             protected override void SubscribeEvents()
             {
                 Player.UsingItem += OnUsingItem;
@@ -53,7 +53,7 @@ namespace LanonymousCustomItems.CustomItems
                 
                 Timing.CallDelayed(10f, () => 
                 {
-                    ev.Player.Kill("Dead by cyanide pills...");
+                    ev.Player.Kill(LanonymousCustomItems.Instance.Config.CyanidePillDeathMessage);
                 });
             }
         }

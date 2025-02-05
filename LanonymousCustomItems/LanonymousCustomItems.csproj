@@ -87,6 +87,7 @@
     <ItemGroup>
         <Compile Include="Config.cs" />
         <Compile Include="CustomItems\CyanidePills.cs" />
+        <Compile Include="CustomItems\ExplosiveBelt.cs" />
         <Compile Include="LanonymousCustomItems.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
