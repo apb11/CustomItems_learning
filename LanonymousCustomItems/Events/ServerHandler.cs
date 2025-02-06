@@ -7,13 +7,12 @@
 // Original code licensed under CC BY-SA 3.0. See license deed.
 // -----------------------------------------------------------------------
 
-namespace LanonymousCustomItems.Events
+namespace LanonymousCustomItems.Events;
+
+public class ServerHandler
 {
-    public class ServerHandler
+    public void OnReloadingConfigs()
     {
-        public void OnReloadingConfigs()
-        {
-            LanonymousCustomItems.Instance.Config.LoadItems();
-        }
+        LanonymousCustomItems.Instance.Config.LoadItems();
     }
 }

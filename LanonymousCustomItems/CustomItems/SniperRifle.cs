@@ -18,58 +18,57 @@ using InventorySystem.Items.Firearms.Attachments;
 using PlayerStatsSystem;
 using YamlDotNet.Serialization;
 
-namespace LanonymousCustomItems.CustomItems
+namespace LanonymousCustomItems.CustomItems;
+
+public class SniperRifle
 {
-    public class SniperRifle
+    [CustomItem(ItemType.GunE11SR)]
+    public class SniperRifleItem : CustomWeapon
     {
-        [CustomItem(ItemType.GunE11SR)]
-        public class SniperRifleItem : CustomWeapon
+        public ItemType ItemType { get; set; } = ItemType.GunE11SR;
+            
+        public override uint Id { get; set; } = 104;
+            
+        public override string Name { get; set; } = "FR-F2";
+            
+        public override string Description { get; set; } = "This FR-F2 is very good at killing is opponents!";
+            
+        public override float Weight { get; set; } = 3.25f;
+            
+        public override byte ClipSize { get; set; } = 10;
+            
+        public override bool ShouldMessageOnGban { get; } = true;
+            
+        [YamlIgnore]
+        public override float Damage { get; set; }
+            
+        public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            public ItemType ItemType { get; set; } = ItemType.GunE11SR;
-            
-            public override uint Id { get; set; } = 104;
-            
-            public override string Name { get; set; } = "FR-F2";
-            
-            public override string Description { get; set; } = "This FR-F2 is very good at killing is opponents!";
-            
-            public override float Weight { get; set; } = 3.25f;
-            
-            public override byte ClipSize { get; set; } = 10;
-            
-            public override bool ShouldMessageOnGban { get; } = true;
-            
-            [YamlIgnore]
-            public override float Damage { get; set; }
-            
-            public override SpawnProperties SpawnProperties { get; set; } = new()
+            Limit = 1,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
-                Limit = 1,
-                DynamicSpawnPoints = new List<DynamicSpawnPoint>
+                new()
                 {
-                    new()
-                    {
-                        Chance = 100,
-                        Location = SpawnLocationType.InsideLczArmory,
-                    },
+                    Chance = 100,
+                    Location = SpawnLocationType.InsideLczArmory,
                 },
-            };
+            },
+        };
             
-            [YamlIgnore]
-            public override AttachmentName[] Attachments { get; set; } = new[]
-            {
-                AttachmentName.ExtendedBarrel,
-                AttachmentName.ScopeSight,
-            };
+        [YamlIgnore]
+        public override AttachmentName[] Attachments { get; set; } = new[]
+        {
+            AttachmentName.ExtendedBarrel,
+            AttachmentName.ScopeSight,
+        };
             
-            [Description("The amount of extra damage this weapon does, as a multiplier.")]
-            public float DamageMultiplier { get; set; } = 3.50f;
+        [Description("The amount of extra damage this weapon does, as a multiplier.")]
+        public float DamageMultiplier { get; set; } = 3.50f;
             
-            protected override void OnHurting(HurtingEventArgs ev)
-            {
-                if (ev.Attacker != ev.Player && ev.DamageHandler.Base is FirearmDamageHandler firearmDamageHandler && firearmDamageHandler.WeaponType == ev.Attacker.CurrentItem.Type)
-                    ev.Amount *= DamageMultiplier;
-            }
+        protected override void OnHurting(HurtingEventArgs ev)
+        {
+            if (ev.Attacker != ev.Player && ev.DamageHandler.Base is FirearmDamageHandler firearmDamageHandler && firearmDamageHandler.WeaponType == ev.Attacker.CurrentItem.Type)
+                ev.Amount *= DamageMultiplier;
         }
     }
 }

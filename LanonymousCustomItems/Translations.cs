@@ -7,14 +7,13 @@
 using System.ComponentModel;
 using Exiled.API.Interfaces;
 
-namespace LanonymousCustomItems
+namespace LanonymousCustomItems;
+
+public class Translations : ITranslation
 {
-    public class Translations : ITranslation
-    {
-        [Description("Cyanide pills death message")]
-        public string CyanidePillDeathMessage { get; set; } = "You have died from cyanide pill";
+    [Description("Cyanide pills death message")]
+    public string CyanidePillDeathMessage { get; set; } = "You have died from cyanide pill";
         
-        [Description("Hint show if when using the hacking device the door is already locked.")]
-        public string Alreadylocked { get; set; } = "This door is already locked!";
-    }
+    [Description("Hint show if when using the hacking device the door is already locked.")]
+    public string Alreadylocked { get; set; } = "This door is already locked!";
 }

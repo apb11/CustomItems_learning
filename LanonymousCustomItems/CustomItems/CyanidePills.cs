@@ -16,60 +16,59 @@ using MEC;
 using Player = Exiled.Events.Handlers.Player;
 
 
-namespace LanonymousCustomItems.CustomItems
-{
-    public class CyanidePill
-    {
-        [CustomItem(ItemType.Painkillers)]
-        public class CyanidePillItem : CustomItem
-        {
-            public ItemType ItemType { get; set; } = ItemType.Painkillers;
-            
-            public override uint Id { get; set; } = 100;
-            
-            public override string Name { get; set; } = "Cyanide pill";
-            
-            public override string Description { get; set; } = "A cyanide pill.";
-            
-            public override float Weight { get; set; } = 0.5f;
-            
-            public override SpawnProperties SpawnProperties { get; set; } = new()
-            {
-                Limit = 1,
-                DynamicSpawnPoints = new List<DynamicSpawnPoint>
-                {
-                    new()
-                    {
-                        Chance = 100,
-                        Location = SpawnLocationType.InsideHczArmory,
-                    },
-                },
-            };
-                
-            protected override void SubscribeEvents()
-            {
-                Player.UsingItem += OnUsingItem;
-                base.SubscribeEvents();
-            }
+namespace LanonymousCustomItems.CustomItems;
 
-            protected override void UnsubscribeEvents()
-            {
-                Player.UsingItem -= OnUsingItem;
-                base.UnsubscribeEvents();
-            }
+public class CyanidePill
+{
+    [CustomItem(ItemType.Painkillers)]
+    public class CyanidePillItem : CustomItem
+    {
+        public ItemType ItemType { get; set; } = ItemType.Painkillers;
             
-            private void OnUsingItem(UsingItemEventArgs ev)
+        public override uint Id { get; set; } = 100;
+            
+        public override string Name { get; set; } = "Cyanide pill";
+            
+        public override string Description { get; set; } = "A cyanide pill.";
+            
+        public override float Weight { get; set; } = 0.5f;
+            
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 1,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
-                if (!Check(ev.Player.CurrentItem))
-                    return;
-                ev.Player.EnableEffect(EffectType.Blurred,10, 10f, true);
-                
-                Timing.CallDelayed(10f, () => 
+                new()
                 {
-                    ev.Player.Kill(LanonymousCustomItems.Instance.Translation.CyanidePillDeathMessage);
-                    Log.Debug($"{ev.Player.Nickname} has killed himself with Cyanide Pill");
-                });
-            }
+                    Chance = 100,
+                    Location = SpawnLocationType.InsideHczArmory,
+                },
+            },
+        };
+                
+        protected override void SubscribeEvents()
+        {
+            Player.UsingItem += OnUsingItem;
+            base.SubscribeEvents();
+        }
+
+        protected override void UnsubscribeEvents()
+        {
+            Player.UsingItem -= OnUsingItem;
+            base.UnsubscribeEvents();
+        }
+            
+        private void OnUsingItem(UsingItemEventArgs ev)
+        {
+            if (!Check(ev.Player.CurrentItem))
+                return;
+            ev.Player.EnableEffect(EffectType.Blurred,10, 10f, true);
+                
+            Timing.CallDelayed(10f, () => 
+            {
+                ev.Player.Kill(LanonymousCustomItems.Instance.Translation.CyanidePillDeathMessage);
+                Log.Debug($"{ev.Player.Nickname} has killed himself with Cyanide Pill");
+            });
         }
     }
 }

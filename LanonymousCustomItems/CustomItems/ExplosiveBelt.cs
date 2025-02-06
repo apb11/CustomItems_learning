@@ -19,76 +19,75 @@ using Exiled.Events.EventArgs.Player;
 using PlayerAPI = Exiled.API.Features.Player;
 using PlayerEvent = Exiled.Events.Handlers.Player;
 
-namespace LanonymousCustomItems.CustomItems
+namespace LanonymousCustomItems.CustomItems;
+
+public class ExplosiveBelt
 {
-    public class ExplosiveBelt
+    [CustomItem(ItemType.ArmorHeavy)]
+    public class ExplosiveBeltItem : CustomArmor
     {
-        [CustomItem(ItemType.ArmorHeavy)]
-        public class ExplosiveBeltItem : CustomArmor
-        {
-            public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
+        public override ItemType Type { get; set; } = ItemType.ArmorHeavy;
             
-            public override uint Id { get; set; } = 101;
+        public override uint Id { get; set; } = 101;
 
-            public override string Name { get; set; } = "Explosive Belt";
+        public override string Name { get; set; } = "Explosive Belt";
 
-            public override string Description { get; set; } = "A belt that explode on death";
+        public override string Description { get; set; } = "A belt that explode on death";
 
-            public override float Weight { get; set; } = 1f;
+        public override float Weight { get; set; } = 1f;
 
-            private readonly List<PlayerAPI> _playersWithArmorOn = new();
+        private readonly List<PlayerAPI> _playersWithArmorOn = new();
 
-            [Description("When true, when the player dies with the explosive belth on, the player will be assosiated with the dying player")]
-            public bool AssociateGrenadeToPlayer { get; set; } = true;
+        [Description("When true, when the player dies with the explosive belth on, the player will be assosiated with the dying player")]
+        public bool AssociateGrenadeToPlayer { get; set; } = true;
 
-            public override SpawnProperties SpawnProperties { get; set; } = new()
+        public override SpawnProperties SpawnProperties { get; set; } = new()
+        {
+            Limit = 1,
+            DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
-                Limit = 1,
-                DynamicSpawnPoints = new List<DynamicSpawnPoint>
+                new()
                 {
-                    new()
-                    {
-                        Chance = 100,
-                        Location = SpawnLocationType.InsideHczArmory,
-                    },
+                    Chance = 100,
+                    Location = SpawnLocationType.InsideHczArmory,
                 },
-            };
+            },
+        };
 
-            protected override void SubscribeEvents()
-            {
-                PlayerEvent.Dying += OnDeath;
-                base.SubscribeEvents();
-            }
+        protected override void SubscribeEvents()
+        {
+            PlayerEvent.Dying += OnDeath;
+            base.SubscribeEvents();
+        }
 
-            protected override void UnsubscribeEvents()
-            {
-                PlayerEvent.Dying -= OnDeath;
-                base.UnsubscribeEvents();
-            }
+        protected override void UnsubscribeEvents()
+        {
+            PlayerEvent.Dying -= OnDeath;
+            base.UnsubscribeEvents();
+        }
 
-            protected override void OnPickingUp(PickingUpItemEventArgs ev)
-            {
-                _playersWithArmorOn.Add(ev.Player);
-            }
+        protected override void OnPickingUp(PickingUpItemEventArgs ev)
+        {
+            _playersWithArmorOn.Add(ev.Player);
+        }
 
-            protected override void OnDropping(DroppingItemEventArgs ev)
+        protected override void OnDropping(DroppingItemEventArgs ev)
+        {
+            _playersWithArmorOn.Remove(ev.Player);
+        }
+
+        private void OnDeath(DyingEventArgs ev)
+        {
+            if (_playersWithArmorOn.Contains(ev.Player))
             {
+                ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+                grenade.FuseTime = 0.2f;
+
+                grenade.SpawnActive(ev.Player.Position, AssociateGrenadeToPlayer ? ev.Player : Server.Host);
+
                 _playersWithArmorOn.Remove(ev.Player);
-            }
-
-            private void OnDeath(DyingEventArgs ev)
-            {
-                if (_playersWithArmorOn.Contains(ev.Player))
-                {
-                    ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
-                    grenade.FuseTime = 0.2f;
-
-                    grenade.SpawnActive(ev.Player.Position, AssociateGrenadeToPlayer ? ev.Player : Server.Host);
-
-                    _playersWithArmorOn.Remove(ev.Player);
-                    ev.Player.CurrentArmor.Destroy();
-                    Log.Debug($"{ev.Player.Nickname} has exploded!");
-                }
+                ev.Player.CurrentArmor.Destroy();
+                Log.Debug($"{ev.Player.Nickname} has exploded!");
             }
         }
     }
