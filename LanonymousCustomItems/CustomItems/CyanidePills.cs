@@ -1,4 +1,11 @@
-﻿using System.Collections.Generic;
+﻿// -----------------------------------------------------------------------
+// <copyright file="CyanidePills.cs" company="Lanonymous">
+// Copyright (c) Lanonymous. All rights reserved.
+// Licensed under the CC BY-SA 4.0 license.
+// -----------------------------------------------------------------------
+
+
+using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Attributes;
@@ -59,7 +66,7 @@ namespace LanonymousCustomItems.CustomItems
                 
                 Timing.CallDelayed(10f, () => 
                 {
-                    ev.Player.Kill(LanonymousCustomItems.Instance.Config.CyanidePillDeathMessage);
+                    ev.Player.Kill(LanonymousCustomItems.Instance.Translation.CyanidePillDeathMessage);
                     Log.Debug($"{ev.Player.Nickname} has killed himself with Cyanide Pill");
                 });
             }

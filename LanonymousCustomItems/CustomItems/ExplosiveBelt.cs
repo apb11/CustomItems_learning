@@ -1,4 +1,13 @@
-﻿using System.Collections.Generic;
+﻿// -----------------------------------------------------------------------
+// <copyright file="ExplosiveBelt.cs" company="Lanonymous">
+// Copyright (c) Lanonymous. All rights reserved.
+// Licensed under the CC BY-SA 4.0 license.
+//
+// Some parts of this file are based on work by Snivy.
+// Original code isn't under any license.
+// -----------------------------------------------------------------------
+
+using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Enums;
 using Exiled.API.Features;
@@ -29,9 +38,8 @@ namespace LanonymousCustomItems.CustomItems
 
             private readonly List<PlayerAPI> _playersWithArmorOn = new();
 
-            [Description(
-                "When true, when the player dies with the explosive belth on, the player will be assosiated with the dying player")]
-            public bool AssosiateGrenadeToPlayer { get; set; } = true;
+            [Description("When true, when the player dies with the explosive belth on, the player will be assosiated with the dying player")]
+            public bool AssociateGrenadeToPlayer { get; set; } = true;
 
             public override SpawnProperties SpawnProperties { get; set; } = new()
             {
@@ -75,7 +83,7 @@ namespace LanonymousCustomItems.CustomItems
                     ExplosiveGrenade grenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
                     grenade.FuseTime = 0.2f;
 
-                    grenade.SpawnActive(ev.Player.Position, AssosiateGrenadeToPlayer ? ev.Player : Server.Host);
+                    grenade.SpawnActive(ev.Player.Position, AssociateGrenadeToPlayer ? ev.Player : Server.Host);
 
                     _playersWithArmorOn.Remove(ev.Player);
                     ev.Player.CurrentArmor.Destroy();

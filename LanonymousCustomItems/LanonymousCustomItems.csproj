@@ -92,10 +92,14 @@
         <Compile Include="Configs\Items.cs" />
         <Compile Include="CustomItems\CyanidePills.cs" />
         <Compile Include="CustomItems\ExplosiveBelt.cs" />
+        <Compile Include="CustomItems\HackingDevice.cs" />
+        <Compile Include="CustomItems\ImpactFlashGrenade.cs" />
         <Compile Include="CustomItems\ImpactHEGrenade.cs" />
+        <Compile Include="CustomItems\SniperRifle.cs" />
         <Compile Include="Events\ServerHandler.cs" />
         <Compile Include="LanonymousCustomItems.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Translations.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

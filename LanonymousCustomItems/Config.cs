@@ -1,4 +1,14 @@
-﻿using System.ComponentModel;
+﻿// -----------------------------------------------------------------------
+// <copyright file="Config.cs" company="Lanonymous">
+// Copyright (c) Lanonymous. All rights reserved.
+// Licensed under the CC BY-SA 4.0 license.
+//
+// Some parts of this file are based on work by Joker119.
+// Original code licensed under CC BY-SA 3.0. See license deed.
+// -----------------------------------------------------------------------
+
+
+using System.ComponentModel;
 using Exiled.API.Interfaces;
 using System.IO;
 using Exiled.API.Features;
@@ -16,10 +26,7 @@ namespace LanonymousCustomItems
 
         [Description("Should the plugin log basic information?")]
         public bool EnableInfoLogs { get; set; } = true;
-
-        [Description("Cyanide pills death message")]
-        public string CyanidePillDeathMessage { get; set; } = "You have died from cyanide pill";
-
+        
         public Configs.Items ItemConfigs { get; private set; } = null!;
 
         public string ItemConfigFolder { get; set; } = Path.Combine(Paths.Configs, "LanonymousCustomItems");

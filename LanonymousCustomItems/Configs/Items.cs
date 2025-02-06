@@ -23,5 +23,20 @@ namespace LanonymousCustomItems.Configs
         {
             new ImpactHeGrenade.ImpactHeGrenadeItem()
         };
+        
+        public List<ImpactFlashGrenade.ImpactFlashGrenadeItem> ImpactFlashGrenades { get; private set; } = new()
+        {
+            new ImpactFlashGrenade.ImpactFlashGrenadeItem()
+        };        
+        
+        public List<SniperRifle.SniperRifleItem> SniperRifles { get; private set; } = new()
+        {
+            new SniperRifle.SniperRifleItem()
+        };
+        
+        public List<HackingDevice.HackingDeviceItem> HackingDevices { get; private set; } = new()
+        {
+            new HackingDevice.HackingDeviceItem()
+        };
     }
 }

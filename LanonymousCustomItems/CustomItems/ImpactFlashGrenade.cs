@@ -1,9 +1,8 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ImpactHEGrenade.cs" company="Lanonymous">
+// <copyright file="ImpactFlashGrenade.cs" company="Lanonymous">
 // Copyright (c) Lanonymous. All rights reserved.
 // Licensed under the CC BY-SA 4.0 license.
 // -----------------------------------------------------------------------
-
 
 using System.Collections.Generic;
 using Exiled.API.Enums;
@@ -14,16 +13,16 @@ using YamlDotNet.Serialization;
 
 namespace LanonymousCustomItems.CustomItems
 {
-    public class ImpactHeGrenade
+    public class ImpactFlashGrenade
     {
-        [CustomItem(ItemType.GrenadeHE)]
-        public class ImpactHeGrenadeItem : CustomGrenade
+        [CustomItem(ItemType.GrenadeFlash)]
+        public class ImpactFlashGrenadeItem : CustomGrenade
         {
-            public ItemType ItemType { get; set; } = ItemType.GrenadeHE;
+            public ItemType ItemType { get; set; } = ItemType.GrenadeFlash;
             
-            public override uint Id { get; set; } = 102;
+            public override uint Id { get; set; } = 103;
             
-            public override string Name { get; set; } = "Impact HE Grenade";
+            public override string Name { get; set; } = "Impact Flash Grenade";
             
             public override string Description { get; set; } = "A grenade that explode on collision!";
             
