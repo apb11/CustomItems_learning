@@ -35,8 +35,10 @@ namespace LanonymousCustomItems
             if (Instance.Config.EnableInfoLogs)
             {
                 Log.Info("===========================================");
-                Log.Info("LanonymousCustomItems v1.0.0 has been enabled!");
+                Log.Info("LanonymousCustomItems v1.0.0-PRE has been enabled!");
                 Log.Info("Created by Sexy Lanonymous");
+                Log.Info("Need help? Our Github: https://github.com/RLLanonymous/LanonymousCustomItems/issues");
+                Log.Info("If you found an issue, please report it to Github");
                 Log.Info("===========================================");
             }
             base.OnEnabled();
@@ -49,7 +51,7 @@ namespace LanonymousCustomItems
             if (Instance.Config.EnableInfoLogs)
             {
                 Log.Info("===========================================");
-                Log.Info("LanonymousCustomItems v1.0.0 has been disabled!");
+                Log.Info("LanonymousCustomItems v1.0.0-PRE has been disabled!");
                 Log.Info("Created by Sexy Lanonymous");
                 Log.Info("===========================================");
             }
