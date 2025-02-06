@@ -60,11 +60,7 @@ namespace LanonymousCustomItems.CustomItems
                 Timing.CallDelayed(10f, () => 
                 {
                     ev.Player.Kill(LanonymousCustomItems.Instance.Config.CyanidePillDeathMessage);
-                    
-                    if (LanonymousCustomItems.Instance.Config.EnableInfoLogs)
-                    {
-                        Log.Info($"{ev.Player.Nickname} has killed himself with Cyanide Pill");
-                    }
+                    Log.Debug($"{ev.Player.Nickname} has killed himself with Cyanide Pill");
                 });
             }
         }
