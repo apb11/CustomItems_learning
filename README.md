@@ -10,6 +10,11 @@
 | Cyanide Pill | 100 | An oxycodone that blur your vision and kill you.  |
 | Explosive Belt | 101 | An heavy armor that make you explode on death.      |
 | Impact HE Grenade | 102 | A HE grenade that explode on impact.      |
+| Impact Flash Grenade | 103 | A flash grenade that explode on impact.      |
+| Sniper Rifle | 104 | A sniper that deal incredible damage.      |
+| Hacking Device | 105 | A keycard that lockdown the door when used.     |
+
+
 
 <h1>Installation</h1>
 
