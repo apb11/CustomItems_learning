@@ -14,33 +14,34 @@ using Exiled.CustomItems.API.Features;
 using Exiled.Events.EventArgs.Player;
 using MEC;
 using Player = Exiled.Events.Handlers.Player;
+using CommandSystem;
 
 
 namespace LanonymousCustomItems.CustomItems;
 
-public class CyanidePill
+public class amnesticextractor
 {
     [CustomItem(ItemType.Painkillers)]
-    public class CyanidePillItem : CustomItem
+    public class amnesticextractor : CustomItem
     {
-        public ItemType ItemType { get; set; } = ItemType.Painkillers;
+        public ItemType ItemType { get; set; } = ItemType.Medkit;
             
         public override uint Id { get; set; } = 100;
             
-        public override string Name { get; set; } = "Cyanide pill";
+        public override string Name { get; set; } = "amnestic extractor";
             
-        public override string Description { get; set; } = "A cyanide pill.";
+        public override string Description { get; set; } = "extract amnestics from 939";
             
         public override float Weight { get; set; } = 0.5f;
             
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 1,
+            Limit = 0,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
                 new()
                 {
-                    Chance = 100,
+                    Chance = 0,
                     Location = SpawnLocationType.InsideHczArmory,
                 },
             },
@@ -58,7 +59,7 @@ public class CyanidePill
             base.UnsubscribeEvents();
         }
             
-        private void OnUsingItem(UsingItemEventArgs ev)
+        public class Add : ICommand: .use
         {
             if (!Check(ev.Player.CurrentItem))
                 return;
