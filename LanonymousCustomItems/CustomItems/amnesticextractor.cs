@@ -30,7 +30,7 @@ public class amnesticextractor
             
         public override string Name { get; set; } = "amnestic extractor";
             
-        public override string Description { get; set; } = "extract amnestics from 939";
+        public override string Description { get; set; } = "extract amnestics from 939's a amnestic cloud";
             
         public override float Weight { get; set; } = 0.5f;
             
@@ -63,7 +63,7 @@ public class amnesticextractor
         {
             if (ev.Hazardhandler.Type != Exiled.API.Enums.HazardType.AmnesticCloud) return;
                 return;
-            ev.Player.EnableEffect(EffectType.Blurred,10, 10f, true);
+            string giveItemCommand = $"/ci give {101} {playerId}";
                 
             Timing.CallDelayed(10f, () => 
             {
