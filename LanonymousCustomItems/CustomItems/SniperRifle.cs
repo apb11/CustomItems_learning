@@ -20,37 +20,38 @@ using YamlDotNet.Serialization;
 
 namespace LanonymousCustomItems.CustomItems;
 
-public class SniperRifle
+public class tranquilizer
 {
-    [CustomItem(ItemType.GunE11SR)]
+    [CustomItem(ItemType.GunA7)]
     public class SniperRifleItem : CustomWeapon
     {
-        public ItemType ItemType { get; set; } = ItemType.GunE11SR;
+        public ItemType ItemType { get; set; } = ItemType.GunA7;
             
-        public override uint Id { get; set; } = 104;
+        public override uint Id { get; set; } = 103;
             
-        public override string Name { get; set; } = "FR-F2";
+        public override string Name { get; set; } = "T7-tranq";
             
-        public override string Description { get; set; } = "This FR-F2 is very good at killing is opponents!";
+        public override string Description { get; set; } = "it does not deal much damage but can stun people (please do not kill with it)";
             
-        public override float Weight { get; set; } = 3.25f;
+        public override float Weight { get; set; } = 2.f;
             
-        public override byte ClipSize { get; set; } = 10;
+        public override byte ClipSize { get; set; } = 5;
             
         public override bool ShouldMessageOnGban { get; } = true;
             
         [YamlIgnore]
-        public override float Damage { get; set; }
+        public override float Damage { get; set; } = 30
+        public override bool FriendlyFire { get; set; } = false
             
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
-            Limit = 1,
+            Limit = 2,
             DynamicSpawnPoints = new List<DynamicSpawnPoint>
             {
                 new()
                 {
                     Chance = 100,
-                    Location = SpawnLocationType.InsideLczArmory,
+                    Location = SpawnLocationType.InsideLczArmory,Hcz939,HczTestRoom
                 },
             },
         };
