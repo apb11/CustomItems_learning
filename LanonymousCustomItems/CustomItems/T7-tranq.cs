@@ -31,7 +31,7 @@ public class tranquilizer
             
         public override string Name { get; set; } = "T7-tranq";
             
-        public override string Description { get; set; } = "it does not deal much damage but can stun people (please do not kill with it)";
+        public override string Description { get; set; } = Main.Instance.Config.description;
             
         public override float Weight { get; set; } = 2.f;
             
@@ -40,8 +40,8 @@ public class tranquilizer
         public override bool ShouldMessageOnGban { get; } = true;
             
         [YamlIgnore]
-        public override float Damage { get; set; } = 30
-        public override bool FriendlyFire { get; set; } = false
+        public override bool Damage { get; set; } = Main.Instance.Config.Damage;
+        public override bool FriendlyFire { get; set; } = Main.Instance.Config.ff;
             
         public override SpawnProperties SpawnProperties { get; set; } = new()
         {
