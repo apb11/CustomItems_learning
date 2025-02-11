@@ -18,8 +18,11 @@ namespace LanonymousCustomItems;
 
 public class Config : IConfig
 {
-    [Description("Should the plugin be load everytime Exiled load?")]
-    public bool IsEnabled { get; set; } = true;
+    [Description("how much damage should the tranq do?")]
+   public override float Damage { get; set; } = 30;
+
+    [Description("can you shoot teammates with the tranq? ")]
+   public override bool ff { get; set; } = true
 
     [Description("Should the plugin be in Debug mode?")]
     public bool Debug { get; set; } = false;
