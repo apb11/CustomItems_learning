@@ -59,9 +59,9 @@ public class amnesticextractor
             base.UnsubscribeEvents();
         }
             
-        public class Add : ICommand: .use
+        public static Event<UsedItemEventArgs> UsedItem { get; set; }
         {
-            if (!Check(ev.Player.CurrentItem))
+            if (ev.Hazardhandler.Type != Exiled.API.Enums.HazardType.AmnesticCloud) return;
                 return;
             ev.Player.EnableEffect(EffectType.Blurred,10, 10f, true);
                 
